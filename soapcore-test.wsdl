@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions name="soapcore-test" 
+	targetNamespace="http://www.example.org/soapcore-test/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:tns="http://www.example.org/soapcore-test/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:soaptest="example:soapcore-test" >
+	<wsdl:types>
+    	<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    		<xsd:import namespace="example:soapcore-test"
+    			schemaLocation="soapcore-test.xsd">
+    		</xsd:import>
+   		</xsd:schema>
+ 	</wsdl:types>
+  <wsdl:message name="NewOperationRequest">
+    <wsdl:part name="id" type="xsd:string"/>
+    <wsdl:part name="data" type="soaptest:SampleData"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="NewOperationResponse">
+    <wsdl:part name="response" type="xsd:boolean"/>
+  </wsdl:message>
+  <wsdl:portType name="soapcore-test">
+    <wsdl:operation name="NewOperation">
+      <wsdl:input message="tns:NewOperationRequest"/>
+      <wsdl:output message="tns:NewOperationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="soapcore-testSOAP" type="tns:soapcore-test">
+
+  	<soap:binding style="rpc"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="NewOperation">
+
+  		<soap:operation
+  			soapAction="http://www.example.org/soapcore-test/NewOperation" />
+  		<wsdl:input>
+
+  			<soap:body use="literal"
+  				namespace="http://www.example.org/soapcore-test/" />
+  		</wsdl:input>
+  		<wsdl:output>
+
+  			<soap:body use="literal"
+  				namespace="http://www.example.org/soapcore-test/" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="soapcore-test">
+    <wsdl:port binding="tns:soapcore-testSOAP" name="soapcore-testSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

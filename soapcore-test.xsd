@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="example:soapcore-test" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="example:soapcore-test">
+    <complexType name="SampleData">
+    	<sequence>
+    		<element name="param1" type="string"></element>
+    		<element name="param2" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>
